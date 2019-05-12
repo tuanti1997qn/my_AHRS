@@ -353,20 +353,18 @@ void loop()
       float temp;
       if((float)myIMU.yaw>0)
       {
-        temp =(float)myIMU.yaw*50/180; // nhung con so than thanh
-        Serial.print(, 2);
-        Serial.println("");      
+        temp =(float)myIMU.yaw*50/180; // nhung con so than thanh 
       }
       else
       {
         
         temp = myIMU.yaw;
         if(temp < -180) temp = -180;
-        temp = (temp+180)*312/180+40; // nhung con so than thanh
-        Serial.print((temp+180)*312/180+40, 2);
-        Serial.println("");
+        float my_temp=50;
+        temp = (temp+180)*(359-my_temp)/180+my_temp; // nhung con so than thanh
       }
-
+      Serial.print(temp, 2);
+      Serial.println("");
       myIMU.count = millis();
       myIMU.sumCount = 0;
       myIMU.sum = 0;
